@@ -28,7 +28,7 @@ library:
   source-dirs: src
 
 executables:
-  roman-numerals-exe:
+  roman-numerals-hs-exe:
     main:                Main.hs
     source-dirs:         app
     ghc-options:
@@ -39,7 +39,7 @@ executables:
     - roman-numerals-hs
 
 tests:
-  roman-numerals-test:
+  roman-numerals-hs-test:
     main:                Spec.hs
     source-dirs:         test
     ghc-options:
