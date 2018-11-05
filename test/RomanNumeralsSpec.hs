@@ -44,6 +44,10 @@ genTuple = do
   b <- arbitrary
   return (a, b)
 
+prop_convertNumber :: Int -> Bool
+prop_convertNumber x = (convertFromRoman . convertToRoman) x == x
+
+
 spec :: Spec
 spec = do
   describe "Converting to Roman Numerals" $ do
