@@ -6,12 +6,20 @@ main :: IO ()
 main = hspec spec
 
 type Roman = String
+type Conversions = [(Int, Roman)]
+
+conversions :: Conversions
+conversions =
+  [ (4, "IV")
+  , (1, "I") ]
 
 convertToRoman :: Int -> Roman
-convertToRoman 1 = "I"
-convertToRoman 2 = "II"
-convertToRoman 3 = "III"
-convertToRoman 4 = "IV"
+convertToRoman 0 = []
+convertToRoman x =
+  roman ++ convertToRoman (x - number)
+    where
+      (number, roman) =
+        head . filter (\(a,_) -> a <= x) $ conversions
 
 convertFromRoman :: Roman -> Int
 convertFromRoman "" = undefined
