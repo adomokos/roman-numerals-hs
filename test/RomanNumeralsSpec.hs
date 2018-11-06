@@ -5,6 +5,7 @@ import Test.QuickCheck
 import Test.Hspec.QuickCheck (prop)
 import Data.List (isPrefixOf, find)
 import Data.Maybe (fromJust)
+import Debug.Trace
 
 main :: IO ()
 main = hspec spec
@@ -46,7 +47,7 @@ genTuple = do
   return (a, b)
 
 numbers :: [Int]
-numbers = [1..1000]
+numbers = [1..98]
 
 genNumbers :: Gen Int
 genNumbers = elements numbers
@@ -55,7 +56,8 @@ prop_convertNumber :: Property
 prop_convertNumber =
   forAll genNumbers
     (\x ->
-      (convertFromRoman . convertToRoman) x == x)
+      traceShow("number: ", (x, convertToRoman x)) $
+        (convertFromRoman . convertToRoman) x == x)
 
 spec :: Spec
 spec = do
