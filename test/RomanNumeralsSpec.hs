@@ -2,6 +2,7 @@ module RomanNumeralsSpec where
 
 import Test.Hspec
 import Test.QuickCheck
+import Test.Hspec.QuickCheck (prop)
 import Data.List (isPrefixOf, find)
 import Data.Maybe (fromJust)
 
@@ -58,6 +59,5 @@ prop_convertNumber =
 
 spec :: Spec
 spec = do
-  describe "Converting to Roman Numerals" $ do
-    it "converts number to Roman and back" $ property $
-      prop_convertNumber
+  prop "converts number to Roman and back" $
+    prop_convertNumber
